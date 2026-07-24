@@ -1,0 +1,133 @@
+name: Static Site QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Live sites rot from content edits and expired certs — neither touches this repo.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      site:
+        description: 'Site slug to test (blank = all)'
+        required: false
+        type: string
+      update_snapshots:
+        description: 'Regenerate visual baselines on this runner (Linux) and commit them back, instead of testing'
+        required: false
+        type: boolean
+        default: false
+
+# contents:write covers both the update_snapshots commit-back and publishing
+# the HTML report to the gh-pages branch below.
+permissions:
+  contents: write
+
+jobs:
+  test:
+    name: ${{ matrix.site }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Keep in sync with sites/index.ts
+        site: [qz]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: pw-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install browsers
+        if: steps.pw-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+
+      - name: Install system deps
+        if: steps.pw-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+
+      - name: Discover pages
+        env:
+          SITE: ${{ github.event.inputs.site || matrix.site }}
+        run: npm run discover
+
+      - name: Regenerate visual baselines
+        if: ${{ github.event.inputs.update_snapshots == 'true' }}
+        env:
+          SITE: ${{ github.event.inputs.site || matrix.site }}
+        run: npx playwright test visual.spec.ts --update-snapshots
+
+      - name: Commit regenerated baselines
+        if: ${{ github.event.inputs.update_snapshots == 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tests/__screenshots__
+          if git diff --staged --quiet; then
+            echo "No baseline changes — nothing to commit."
+          else
+            git commit -m "chore: regenerate visual baselines (${{ github.event.inputs.site || matrix.site }}, Linux) [skip ci]"
+            git push
+          fi
+
+      - name: Run tests
+        if: ${{ github.event.inputs.update_snapshots != 'true' }}
+        env:
+          SITE: ${{ github.event.inputs.site || matrix.site }}
+        run: npx playwright test
+
+      - name: Generate manual checklist
+        if: ${{ !cancelled() && github.event.inputs.update_snapshots != 'true' }}
+        env:
+          SITE: ${{ github.event.inputs.site || matrix.site }}
+        run: npm run checklist
+
+      - name: Upload report and checklist
+        if: ${{ !cancelled() && github.event.inputs.update_snapshots != 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-${{ matrix.site }}
+          path: |
+            playwright-report/
+            test-results/
+            checklists/
+          retention-days: 14
+
+      # Gives every run a stable, shareable link (unlike the artifact above,
+      # which expires in 14 days and requires downloading + unzipping to view).
+      # Publishes to gh-pages under reports/<site>/<run number>/ and keeps
+      # every previous run's report rather than overwriting it.
+      #
+      # One-time setup this workflow can't do for you: in the repo's Settings →
+      # Pages, set Source to "Deploy from a branch" → gh-pages → /(root).
+      # NOTE: if more sites are ever added to the matrix, parallel jobs pushing
+      # to gh-pages at once can race — if that happens, add
+      # `concurrency: { group: gh-pages, cancel-in-progress: false }` at the
+      # job level to serialize the publish step.
+      - name: Publish HTML report to GitHub Pages
+        if: ${{ !cancelled() && github.event.inputs.update_snapshots != 'true' }}
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./playwright-report
+          destination_dir: reports/${{ matrix.site }}/${{ github.run_number }}
+          keep_files: true
+
+      - name: Print report link
+        if: ${{ !cancelled() && github.event.inputs.update_snapshots != 'true' }}
+        run: |
+          echo "### 📊 QA report — ${{ matrix.site }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "https://${{ github.repository_owner }}.github.io/${GITHUB_REPOSITORY#*/}/reports/${{ matrix.site }}/${{ github.run_number }}/" >> "$GITHUB_STEP_SUMMARY"

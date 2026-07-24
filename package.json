@@ -1,0 +1,38 @@
+{
+  "name": "static-site-qa",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Shared Playwright QA harness for static sites. Encodes the PopularPower website QA checklist as an automated baseline; generates the human half as a per-site checklist.",
+  "scripts": {
+    "setup": "npm ci && npx playwright install --with-deps chromium",
+    "discover": "tsx scripts/discover.ts",
+    "checklist": "tsx scripts/checklist.ts",
+    "test": "playwright test",
+    "test:fast": "playwright test --project=checks",
+    "test:smoke": "playwright test smoke.spec.ts",
+    "test:content": "playwright test content.spec.ts",
+    "test:links": "playwright test links.spec.ts",
+    "test:media": "playwright test media.spec.ts",
+    "test:layout": "playwright test layout.spec.ts",
+    "test:flows": "playwright test flows.spec.ts",
+    "test:responsive": "playwright test --project=responsive",
+    "test:a11y": "playwright test a11y.spec.ts",
+    "test:seo": "playwright test seo.spec.ts",
+    "test:visual": "playwright test visual.spec.ts",
+    "test:visual:update": "playwright test visual.spec.ts --update-snapshots",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "links:crawl": "linkinator --recurse --silent",
+    "lh": "lhci autorun",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@lhci/cli": "^0.14.0",
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.10.0",
+    "linkinator": "^6.1.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

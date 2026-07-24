@@ -1,0 +1,14 @@
+node_modules/
+playwright-report/
+test-results/
+results.json
+.lighthouseci/
+.discovered/
+checklists/
+.playwright-mcp/
+.DS_Store
+*.log
+
+# Screenshot baselines ARE committed — do not ignore tests/__screenshots__
+**/*-actual.png
+**/*-diff.png
