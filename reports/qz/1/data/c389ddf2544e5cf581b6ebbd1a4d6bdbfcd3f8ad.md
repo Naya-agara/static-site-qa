@@ -1,0 +1,390 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: media.spec.ts >> [qz] media >> /leadership images are not too heavy
+- Location: tests/media.spec.ts:96:11
+
+# Error details
+
+```
+Error: images over 400KB
+
+expect(received).toEqual(expected) // deep equality
+
+- Expected  - 1
++ Received  + 4
+
+- Array []
++ Array [
++   "491KB: 69e727c1fc1a1b01506c41c6_mngt-darkbg.jpg",
++   "569KB: 69e756ac988c2aff645e1b8a_leaders.jpg",
++ ]
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - button "Previous slide" [disabled]:
+                  - generic:
+                    - img
+                - button "Next slide":
+                  - generic:
+                    - img
+            - generic:
+              - generic:
+                - group "1 / 4":
+                  - generic:
+                    - generic:
+                      - heading "Jim Ovia, CFR" [level=3]
+                      - generic: Chairman
+                    - generic:
+                      - paragraph: Founder and former Chairman of Zenith Bank Plc, one of Nigeria and Africa's largest banks. Philanthropist, thought leader, and member of Nigeria's National Economic Management Team.
+                - group "2 / 4":
+                  - generic:
+                    - generic:
+                      - heading "Joseph Onwubuya" [level=3]
+                      - generic: Director
+                    - generic:
+                      - paragraph: Technology and business strategy leader with 20+ years of experience in enterprise integration, security, and financial services transformation. Network and IT professional with advanced certifications.
+                - group "3 / 4":
+                  - generic:
+                    - generic:
+                      - heading "Dr. Oluwabukunmi Fapohunda" [level=3]
+                      - generic: Director
+                    - generic:
+                      - paragraph: Multi-award winning finance professional with 17+ years of multi-industry, multi-geography experience. Former Chief Financial Officer of Quantum Fund Management Limited. Fellow of the Institute of Chartered Accountants of Nigeria (ICAN) and Fellow of the Chartered Institute of Taxation of Nigeria (CITN).
+                - group "4 / 4":
+                  - generic:
+                    - generic:
+                      - heading "Emeka Anyaeji" [level=3]
+                      - generic: Group General Counsel & Company Secretary
+                    - generic:
+                      - paragraph: Corporate attorney and governance specialist with 20+ years of experience in legal advisory, financial law, and regulatory compliance across banking, capital markets, and insurance sectors. Fellow of the Institute of Capital Market Registrars and Chartered Institute of Arbitrators (FCIArb).
+  - generic [ref=e2]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - img [ref=e11]
+        - generic [ref=e13]: "ANNOUNCEMENT:"
+      - generic [ref=e15]:
+        - paragraph [ref=e17]: From global engagements to innovation in clean energy and sustainability, we are in constant motion on a journey to the top.
+        - paragraph [ref=e19]: From global engagements to innovation in clean energy and sustainability, we are in constant motion on a journey to the top.
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - button "About" [ref=e25] [cursor=pointer]:
+          - generic [ref=e26]:
+            - generic [ref=e27]: About
+            - img [ref=e30]
+        - link "SUSTAINABILITY" [ref=e32] [cursor=pointer]:
+          - /url: /sustainability
+        - button "Library" [ref=e34] [cursor=pointer]:
+          - generic [ref=e35]:
+            - generic [ref=e36]: Library
+            - img [ref=e39]
+        - link "Careers" [ref=e41] [cursor=pointer]:
+          - /url: /careers
+        - link "Contact" [ref=e42] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e43]:
+        - link [ref=e44] [cursor=pointer]:
+          - /url: "#"
+        - button "Group" [ref=e46] [cursor=pointer]:
+          - generic [ref=e47]: Group
+          - img [ref=e50]
+  - generic [ref=e55]:
+    - generic "Leadership at Quantum Zenith" [ref=e57]:
+      - generic [ref=e59]: Leadership at
+      - generic [ref=e61]: Quantum Zenith
+    - generic "Behind Quantum Zenith’s success is a team of seasoned professionals with deep expertise in investment management, finance, and client service." [ref=e63]:
+      - generic [ref=e65]: Behind Quantum Zenith’s success is a team of
+      - generic [ref=e67]: seasoned professionals with deep expertise in
+      - generic [ref=e69]: investment management, finance, and client
+      - generic [ref=e71]: service.
+  - generic [ref=e74]:
+    - generic [ref=e75]:
+      - link "BOARD OF DIRECTORS" [ref=e76] [cursor=pointer]:
+        - /url: "#bod"
+        - generic [ref=e77]: BOARD OF DIRECTORS
+      - link "MANAGEMENT TEAM" [ref=e78] [cursor=pointer]:
+        - /url: "#mngt"
+        - generic [ref=e79]: MANAGEMENT TEAM
+    - generic [ref=e82]:
+      - generic [ref=e83]:
+        - generic [ref=e84]: Board of Directors
+        - generic [ref=e85]: Our board brings together visionary leaders and seasoned experts whose decades of experience span finance, governance, investment strategy, and African market dynamics.
+      - generic [ref=e86]:
+        - generic [ref=e89] [cursor=pointer]:
+          - generic [ref=e90]:
+            - generic [ref=e91]: Jim Ovia, CFR
+            - generic [ref=e92]: Chairman
+          - generic [ref=e93]: Founder and former Chairman of Zenith Bank Plc, one of Nigeria and Africa's largest banks. Philanthropist, thought leader, and member of Nigeria's National Economic Management Team.
+        - generic [ref=e96] [cursor=pointer]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: Joseph Onwubuya
+            - generic [ref=e99]: Director
+          - generic [ref=e100]: Technology and business strategy leader with 20+ years of experience in enterprise integration, security, and financial services transformation. Network and IT professional with advanced certifications.
+        - generic [ref=e103] [cursor=pointer]:
+          - generic [ref=e104]:
+            - generic [ref=e105]: Dr. Oluwabukunmi Fapohunda
+            - generic [ref=e106]: Director
+          - generic [ref=e107]: Multi-award winning finance professional with 17+ years of multi-industry, multi-geography experience. Former Chief Financial Officer of Quantum Fund Management Limited. Fellow of the Institute of Chartered Accountants of Nigeria (ICAN) and Fellow of the Chartered Institute of Taxation of Nigeria (CITN).
+        - generic [ref=e110] [cursor=pointer]:
+          - generic [ref=e111]:
+            - generic [ref=e112]: Emeka Anyaeji
+            - generic [ref=e113]: Group General Counsel & Company Secretary
+          - generic [ref=e114]: Corporate attorney and governance specialist with 20+ years of experience in legal advisory, financial law, and regulatory compliance across banking, capital markets, and insurance sectors. Fellow of the Institute of Capital Market Registrars and Chartered Institute of Arbitrators (FCIArb).
+    - generic [ref=e119]:
+      - generic [ref=e120]: Management Team
+      - generic [ref=e121]:
+        - generic [ref=e124]:
+          - generic [ref=e125]: HEAD, ASSET MANAGEMENT
+          - generic [ref=e126]: Emmanuel Ajasa, CFA
+        - generic [ref=e129]:
+          - generic [ref=e130]: HEAD, COMPLIANCE
+          - generic [ref=e131]: Mohammed Achimi, ACA
+        - generic [ref=e134]:
+          - generic [ref=e135]: ESG SPECIALIST
+          - generic [ref=e136]: Chiamaka Anakwuo-Nwosu
+        - generic [ref=e139]:
+          - generic [ref=e140]: ESG SPECIALIST
+          - generic [ref=e141]: Chiamaka Anakwuo-Nwosu
+        - generic [ref=e144]:
+          - generic [ref=e145]: ESG SPECIALIST
+          - generic [ref=e146]: Chiamaka Anakwuo-Nwosu
+        - generic [ref=e149]:
+          - generic [ref=e150]: ESG SPECIALIST
+          - generic [ref=e151]: Chiamaka Anakwuo-Nwosu
+  - generic [ref=e152]:
+    - generic [ref=e156]:
+      - generic [ref=e157]:
+        - generic [ref=e158]:
+          - text: Where Will You
+          - text: Make Your Mark?
+        - generic [ref=e159]: If you are ready to build something enduring, not just for yourself, but for the future of financial markets, you will love working at Quantum Zenith. We review applications with care, discretion, and a long-term view.
+      - link "View current opportunities" [ref=e160] [cursor=pointer]:
+        - /url: /careers
+        - generic [ref=e161]: View current opportunities
+    - generic [ref=e163]:
+      - generic [ref=e164]:
+        - generic [ref=e168]:
+          - link [ref=e169] [cursor=pointer]:
+            - /url: "#"
+          - link [ref=e170] [cursor=pointer]:
+            - /url: https://ng.linkedin.com/company/quantumzenithng
+          - link [ref=e171] [cursor=pointer]:
+            - /url: https://youtube.com/@quantumzenithng?si=IhDDGc_R4iYTc1yA
+          - link [ref=e172] [cursor=pointer]:
+            - /url: https://x.com/quantumzenithng?s=21&t=ETUHaun_JYTAM4G4n4QeRQ
+          - link [ref=e173] [cursor=pointer]:
+            - /url: https://www.instagram.com/quantumzenithng/
+        - generic [ref=e174]:
+          - generic [ref=e176]:
+            - generic [ref=e178]: COMPANY
+            - generic [ref=e179]:
+              - link "Who We Are" [ref=e181] [cursor=pointer]:
+                - /url: /about
+              - link "Leadership Team" [ref=e183] [cursor=pointer]:
+                - /url: /leadership
+              - link "Sustainability" [ref=e185] [cursor=pointer]:
+                - /url: /sustainability
+              - link "Careers" [ref=e187] [cursor=pointer]:
+                - /url: /careers
+              - link "Contact" [ref=e189] [cursor=pointer]:
+                - /url: /contact
+          - generic [ref=e191]:
+            - generic [ref=e193]: LIBRARY
+            - generic [ref=e194]:
+              - link "Blog Posts" [ref=e196] [cursor=pointer]:
+                - /url: /news
+              - link "Press Release" [ref=e198] [cursor=pointer]:
+                - /url: /news
+              - link "Insights" [ref=e200] [cursor=pointer]:
+                - /url: /news
+              - link "Gallery" [ref=e202] [cursor=pointer]:
+                - /url: /gallery
+              - link "FAQ" [ref=e204] [cursor=pointer]:
+                - /url: /faqs
+              - link "Knowledge Hub" [ref=e206] [cursor=pointer]:
+                - /url: /knowledge-hub
+          - generic [ref=e208]:
+            - generic [ref=e210]: SUBSIDIARIES
+            - generic [ref=e211]:
+              - link "Securities" [ref=e213] [cursor=pointer]:
+                - /url: "#"
+              - link "Asset Management" [ref=e215] [cursor=pointer]:
+                - /url: "#"
+              - link "Capital" [ref=e217] [cursor=pointer]:
+                - /url: "#"
+              - link "Trustees" [ref=e219] [cursor=pointer]:
+                - /url: "#"
+          - generic [ref=e221]:
+            - generic [ref=e223]: Contact
+            - generic [ref=e224]:
+              - link "02012782636" [ref=e226] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e227]: "02012782636"
+              - link "ask@quantumzenith.com.ng" [ref=e229] [cursor=pointer]:
+                - /url: mailto:ask@quantumzenith.com.ng
+                - generic [ref=e230]: ask@quantumzenith.com.ng
+      - generic [ref=e231]:
+        - generic [ref=e233]: Much More than Investing.
+        - generic [ref=e234]:
+          - generic [ref=e235]: © 2026 Quantum Zenith Group Limited. All Rights Reserved.
+          - link "Privacy Policy" [ref=e236] [cursor=pointer]:
+            - /url: /privacy-policy
+          - link [ref=e237] [cursor=pointer]:
+            - /url: https://wearecheck.co/
+```
+
+# Test source
+
+```ts
+  12  | 
+  13  | // Junk alt text that passes a "has alt" check but helps nobody.
+  14  | const JUNK_ALT = /^(image|img|photo|picture|icon|graphic|logo|banner|untitled|\d+|img[_-]?\d+|dsc[_-]?\d+)$/i;
+  15  | 
+  16  | for (const site of sites) {
+  17  |   if (skips(site, 'media')) continue;
+  18  | 
+  19  |   test.describe(`[${site.name}] media`, () => {
+  20  |     const pages = pagesFor(site);
+  21  | 
+  22  |     for (const page_ of pages) {
+  23  |       const label = page_.name ?? page_.path;
+  24  | 
+  25  |       test(`${label} images are the right resolution`, async ({ page }) => {
+  26  |         await page.goto(urlFor(site, page_), { waitUntil: 'load' });
+  27  |         await page.evaluate(() => document.fonts.ready);
+  28  | 
+  29  |         const problems = await page.evaluate(() => {
+  30  |           const out: string[] = [];
+  31  |           const dpr = window.devicePixelRatio || 1;
+  32  | 
+  33  |           for (const img of Array.from(document.images)) {
+  34  |             if (!img.complete || img.naturalWidth === 0) continue;
+  35  |             // SVGs are vector — naturalWidth says nothing about how they render.
+  36  |             if (/\.svg(\?|$)/i.test(img.currentSrc || img.src)) continue;
+  37  |             const rect = img.getBoundingClientRect();
+  38  |             if (rect.width < 20 || rect.height < 20) continue; // icons/spacers
+  39  | 
+  40  |             const needed = rect.width * dpr;
+  41  | 
+  42  |             // Source narrower than its display box = visible pixelation.
+  43  |             if (img.naturalWidth < needed * 0.8) {
+  44  |               out.push(
+  45  |                 `pixelated: ${img.currentSrc.split('/').pop()} is ${img.naturalWidth}px wide, ` +
+  46  |                   `displayed at ${Math.round(needed)}px`,
+  47  |               );
+  48  |             }
+  49  |             // Source hugely larger than needed = wasted bandwidth.
+  50  |             if (img.naturalWidth > needed * 3) {
+  51  |               out.push(
+  52  |                 `oversized: ${img.currentSrc.split('/').pop()} is ${img.naturalWidth}px wide, ` +
+  53  |                   `only needs ${Math.round(needed)}px`,
+  54  |               );
+  55  |             }
+  56  |           }
+  57  |           return out;
+  58  |         });
+  59  | 
+  60  |         expect(problems, 'image resolution problems').toEqual([]);
+  61  |       });
+  62  | 
+  63  |       test(`${label} alt text is meaningful`, async ({ page }) => {
+  64  |         await page.goto(urlFor(site, page_), { waitUntil: 'load' });
+  65  | 
+  66  |         const problems = await page.evaluate((junkSource: string) => {
+  67  |           const junk = new RegExp(junkSource, 'i');
+  68  |           const out: string[] = [];
+  69  | 
+  70  |           for (const img of Array.from(document.images)) {
+  71  |             const file = (img.currentSrc || img.src).split('/').pop() ?? '';
+  72  |             const alt = img.getAttribute('alt');
+  73  | 
+  74  |             // alt="" is correct for decorative images — don't flag it.
+  75  |             if (alt === null) {
+  76  |               out.push(`missing alt attribute: ${file}`);
+  77  |               continue;
+  78  |             }
+  79  |             if (alt === '') continue;
+  80  | 
+  81  |             const trimmed = alt.trim();
+  82  |             if (junk.test(trimmed)) out.push(`junk alt text "${trimmed}": ${file}`);
+  83  |             if (/\.(jpg|jpeg|png|gif|webp|svg)$/i.test(trimmed)) {
+  84  |               out.push(`alt text is a filename "${trimmed}": ${file}`);
+  85  |             }
+  86  |             if (trimmed.length > 150) {
+  87  |               out.push(`alt text is ${trimmed.length} chars (keep under ~150): ${file}`);
+  88  |             }
+  89  |           }
+  90  |           return out;
+  91  |         }, JUNK_ALT.source);
+  92  | 
+  93  |         expect(problems, 'alt text problems').toEqual([]);
+  94  |       });
+  95  | 
+  96  |       test(`${label} images are not too heavy`, async ({ page }) => {
+  97  |         const maxKB = site.media?.maxImageKB ?? 300;
+  98  |         const heavy: string[] = [];
+  99  | 
+  100 |         page.on('response', async (res) => {
+  101 |           if (!res.request().resourceType().match(/image/)) return;
+  102 |           const len = Number(res.headers()['content-length'] ?? 0);
+  103 |           if (len > maxKB * 1024) {
+  104 |             heavy.push(`${Math.round(len / 1024)}KB: ${res.url().split('/').pop()}`);
+  105 |           }
+  106 |         });
+  107 | 
+  108 |         await page.goto(urlFor(site, page_), { waitUntil: 'load' });
+  109 |         // networkidle never fires on sites with polling analytics — try, then move on.
+  110 |         await page.waitForLoadState('networkidle', { timeout: 10_000 }).catch(() => {});
+  111 | 
+> 112 |         expect(heavy, `images over ${maxKB}KB`).toEqual([]);
+      |                                                 ^ Error: images over 400KB
+  113 |       });
+  114 | 
+  115 |       test(`${label} video and audio behave`, async ({ page }) => {
+  116 |         await page.goto(urlFor(site, page_), { waitUntil: 'domcontentloaded' });
+  117 | 
+  118 |         const problems = await page.evaluate(() => {
+  119 |           const out: string[] = [];
+  120 |           for (const m of Array.from(document.querySelectorAll('video, audio'))) {
+  121 |             const el = m as HTMLMediaElement;
+  122 |             const src = el.currentSrc || el.getAttribute('src') || '(inline source)';
+  123 | 
+  124 |             // Autoplay with sound is blocked by browsers and hated by users.
+  125 |             if (el.autoplay && !el.muted) out.push(`autoplays with sound: ${src}`);
+  126 | 
+  127 |             // Anything not decorative needs controls.
+  128 |             if (!el.controls && !el.autoplay) out.push(`no player controls: ${src}`);
+  129 | 
+  130 |             if (el.tagName === 'VIDEO') {
+  131 |               const hasCaptions = el.querySelector('track[kind="captions"], track[kind="subtitles"]');
+  132 |               if (!hasCaptions) out.push(`video has no captions track: ${src}`);
+  133 |             }
+  134 |           }
+  135 |           return out;
+  136 |         });
+  137 | 
+  138 |         expect(problems, 'media problems').toEqual([]);
+  139 |       });
+  140 |     }
+  141 |   });
+  142 | }
+  143 | 
+```
